@@ -1,0 +1,28 @@
+name: Generate Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+      message:
+        description: 'Deploy Message'
+        required: true
+        type: string
+
+jobs:
+  generate_release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Generate Release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_name: ${{ needs.deploy_play_store.outputs.versionInfo }}
+          tag_name: ${{ needs.deploy_play_store.outputs.versionInfo }}
+          body: |
+                ${{ needs.deploy_play_store.outputs.releaseNote }}
+          draft: false
+          prerelease: false
