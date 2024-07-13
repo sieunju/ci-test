@@ -16,13 +16,14 @@ jobs:
     
     steps:
       - name: Generate Release
-        uses: actions/create-release@latest
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: ${{ inputs.version }}
-          tag_name: ${{ inputs.version }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ inputs.version }}
           body: |
-                ${{ inputs.message }}
+            ## Changes
+            ${{ inputs.message }}
           draft: false
           prerelease: false
