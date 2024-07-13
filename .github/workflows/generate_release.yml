@@ -20,9 +20,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: ${{ needs.deploy_play_store.outputs.versionInfo }}
-          tag_name: ${{ needs.deploy_play_store.outputs.versionInfo }}
+          release_name: ${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
           body: |
-                ${{ needs.deploy_play_store.outputs.releaseNote }}
+                ${{ inputs.message }}
           draft: false
           prerelease: false
