@@ -4,11 +4,11 @@ on:
     inputs:
       versionCode:
         required: true
-        description: "1"
+        description: "VersionCode ex.) 1"
         type: string
       version:
         required: true
-        description: "0.1.1"
+        description: "VersionName ex.) 1.0.0"
         type: string
       message:
         description: 'Deploy Message'
