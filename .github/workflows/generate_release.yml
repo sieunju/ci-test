@@ -23,7 +23,6 @@ jobs:
         id: tag
         run: |
           CURRENT_DATE=$(date +"%Y년%m월%d일_%H시%M분")
-          echo $CURRENT_DATE
           echo "val=$CURRENT_DATE" >> "$GITHUB_OUTPUT"
 
       - name: Generate Release
