@@ -4,9 +4,11 @@ on:
     inputs:
       versionCode:
         required: true
+        description: "1"
         type: string
       version:
         required: true
+        description: "0.1.1"
         type: string
       message:
         description: 'Deploy Message'
@@ -27,10 +29,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ inputs.versionCode }}
+          tag_name: $(date + "%Y년_%m월_%d일-%H시%분")
           release_name: Release ${{ inputs.version }}
           body: |
             ## Changes
             ${{ inputs.message }}
           draft: false
-          prerelease: false
+          release: false
