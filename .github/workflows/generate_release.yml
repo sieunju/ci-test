@@ -19,12 +19,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '16'
+      - name: Generate Tag
+        id: tag
+        run: |
+          CURRENT_DATE=$(date +"%Y년%m월%d일_%H시%M분")
+          echo "val=$CURRENT_DATE" >> "$GITHUB_OUTPUT"
+
       - name: Generate Release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ (date +"%Y년%m월%d일_%H시%M분") }}
+          tag_name: ${{ steps.tag.val }}
           release_name: Release ${{ inputs.version }}
           body: |
             ## Changes
