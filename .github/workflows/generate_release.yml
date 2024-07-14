@@ -36,4 +36,4 @@ jobs:
             ## Changes
             ${{ inputs.message }}
           draft: false
-          release: false
+          prerelease: false
