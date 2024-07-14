@@ -26,14 +26,12 @@ jobs:
           echo "val=$CURRENT_DATE" >> "$GITHUB_OUTPUT"
 
       - name: Generate Release
-        uses: actions/create-release@latest
+        uses: ncipollo/release-action@v1.14.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.outputs.val }}
-          release_name: Release ${{ inputs.version }}
+          tag: ${{ steps.tag.outputs.val }}
+          name: Release ${{ inputs.version }}
           body: |
             ## Changes
             ${{ inputs.message }}
-          draft: false
-          prerelease: false
